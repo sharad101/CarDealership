@@ -2,7 +2,9 @@ package com.pluralsight;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 public class DealershipFileManager {
         public Dealership getDealership() {
@@ -42,7 +44,20 @@ public class DealershipFileManager {
         }
 
         public void saveDealership(Dealership dealership) {
-            // Empty for now, will implement later
+            try (FileWriter writer = new FileWriter("inventory.csv")) {
+                // Write dealership information as the first line
+                writer.write(dealership.toString() + "\n");
+
+                // Write each vehicle on a separate line
+                List<Vehicle> vehicles = dealership.getAllVehicles();
+                for (Vehicle vehicle : vehicles) {
+                    writer.write(vehicle.toString() + "\n");
+                }
+
+                System.out.println("Dealership data saved successfully!");
+            } catch (Exception e) {
+                System.out.println("Error saving dealership data");
+            }
         }
     }
 

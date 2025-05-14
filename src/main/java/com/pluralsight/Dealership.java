@@ -10,7 +10,7 @@ public class Dealership {
     private ArrayList<Vehicle> inventory;
 
 
-     // Constructor for Dealership class
+    // Constructor for Dealership class
     public Dealership(String name, String address, String phone) {
         this.name = name;
         this.address = address;
@@ -50,53 +50,88 @@ public class Dealership {
     }
 
 
-     // Get all vehicles in the inventory
+    // Get all vehicles in the inventory
     public List<Vehicle> getAllVehicles() {
         return new ArrayList<>(inventory);
     }
 
     //Find vehicles within a specific price range
     public List<Vehicle> getVehiclesByPrice(double min, double max) {
-        // Will be implemented in the next phase
-        return null;
+        List<Vehicle> result = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getPrice() >= min && vehicle.getPrice() <= max) {
+                result.add(vehicle);
+            }
+        }
+        return result;
     }
 
-     // Find vehicles by make and model
+    // Find vehicles by make and model
 
     public List<Vehicle> getVehiclesByMakeModel(String make, String model) {
-        // Will be implemented in the next phase
-        return null;
+        List<Vehicle> result = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getMake().equalsIgnoreCase(make) && vehicle.getModel().equalsIgnoreCase(model)) {
+                result.add(vehicle);
+            }
+        }
+        return result;
     }
 
-     // Find vehicles within a year range
+    // Find vehicles within a year range
     public List<Vehicle> getVehiclesByYear(int min, int max) {
-        // Will be implemented in the next phase
-        return null;
+        List<Vehicle> result = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getYear() >= min && vehicle.getYear() <= max) {
+                result.add(vehicle);
+            }
+        }
+        return result;
     }
 
-     // Find vehicles by color
+    // Find vehicles by color
     public List<Vehicle> getVehiclesByColor(String color) {
-        // Will be implemented in the next phase
-        return null;
+        List<Vehicle> result = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getColor().equalsIgnoreCase(color)) {
+                result.add(vehicle);
+            }
+        }
+        return result;
     }
 
 
-     // Find vehicles within a mileage range
+    // Find vehicles within a mileage range
     public List<Vehicle> getVehiclesByMileage(int min, int max) {
-        // Will be implemented in the next phase
-        return null;
+        List<Vehicle> result = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getOdometer() >= min && vehicle.getOdometer() <= max) {
+                result.add(vehicle);
+            }
+        }
+        return result;
     }
 
 
-     // Find vehicles by vehicle type
+    // Find vehicles by vehicle type
     public List<Vehicle> getVehiclesByType(String vehicleType) {
-        // Will be implemented in the next phase
-        return null;
+        List<Vehicle> result = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getVehicleType().equalsIgnoreCase(vehicleType)) {
+                result.add(vehicle);
+            }
+        }
+        return result;
     }
 
-     // Remove a vehicle from inventory
+    // Remove a vehicle from inventory
     public void removeVehicle(int vin) {
-        // Will be implemented in the next phase
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i).getVin() == vin) {
+                inventory.remove(i);
+                return;
+            }
+        }
     }
 
     @Override
@@ -104,4 +139,3 @@ public class Dealership {
         return String.format("%s|%s|%s", name, address, phone);
     }
 }
-
