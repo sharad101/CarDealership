@@ -63,16 +63,37 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Demo
 
-![demo.gif](demo.gif)
+![car.gif](car.gif)
 
-## Future Work
+## Interesting Code
 
-Outline potential future enhancements or functionalities you might consider adding:
+      private void displayVehicles(List<Vehicle> vehicles) {
+      if (vehicles == null || vehicles.isEmpty()) {
+      System.out.println("No vehicles found.");
+      return;
+      }
 
-- Authentication System: Add user login and account separation so each user has a private ledger.
+    System.out.println("\n-------------------------------------------------------------");
+    System.out.printf("%-5s %-5s %-10s %-10s %-10s %-10s %-10s %s\n",
+            "VIN", "Year", "Make", "Model", "Type", "Color", "Odometer", "Price");
+    System.out.println("---------------------------------------------------------------");
 
-- Category Support: Allow users to tag transactions with categories (e.g., groceries, utilities) and filter/search by them.
+    for (Vehicle vehicle : vehicles) {
+        System.out.printf("%-5d %-5d %-10s %-10s %-10s %-10s %-10d $%.2f\n",
+                vehicle.getVin(),
+                vehicle.getYear(),
+                vehicle.getMake(),
+                vehicle.getModel(),
+                vehicle.getVehicleType(),
+                vehicle.getColor(),
+                vehicle.getOdometer(),
+                vehicle.getPrice());
+    }
+    System.out.println("--------------------------------------------------");
+      }
 
+This method demonstrates how to cleanly and effectively display a formatted table of data in a console application, mimicking a UI-like experience within plain text. 
+Using System.out.printf() with formatted width fields creates clear, aligned columns, which is uncommon in beginner-level console apps but makes a huge difference in usability and readabilty.
 ## Resources
 
 List resources such as tutorials, articles, or documentation that helped you during the project.
