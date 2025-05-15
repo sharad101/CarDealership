@@ -9,11 +9,13 @@ public class UserInterface {
     private Scanner scanner;
     private DealershipFileManager dealershipFileManager;
 
+    // Constructor to initialize the scanner and dealershipFileManager
     public UserInterface() {
         this.scanner = new Scanner(System.in);
         this.dealershipFileManager = new DealershipFileManager();
     }
 
+    // Initializes the dealership data, or exits if loading fails
     private void init() {
         this.dealership = dealershipFileManager.getDealership();
         if (this.dealership == null) {
@@ -22,6 +24,7 @@ public class UserInterface {
         }
     }
 
+    // Main method for displaying the menu and processing user input
     public void display() {
         init();
         boolean exit = false;
@@ -32,6 +35,7 @@ public class UserInterface {
         }
     }
 
+    // Displays the menu with available options for the user
     private void displayMenu() {
         System.out.println("\n===== " + dealership.getName() + " =====");
         System.out.println("1. View all vehicles");
@@ -47,6 +51,8 @@ public class UserInterface {
         System.out.print("Enter your choice: ");
     }
 
+
+    // Processes the user's menu choice and calls the appropriate method
     private void processChoice(String choice) {
         switch (choice) {
             case "1":
@@ -84,6 +90,8 @@ public class UserInterface {
         }
     }
 
+
+    // Displays the list of vehicles in a formatted table
     private void displayVehicles(List<Vehicle> vehicles) {
         if (vehicles == null || vehicles.isEmpty()) {
             System.out.println("No vehicles found.");
@@ -109,11 +117,14 @@ public class UserInterface {
         System.out.println("--------------------------------------------------");
     }
 
+    // Handles the request to view all vehicles
     public void processAllVehiclesRequest() {
         List<Vehicle> allVehicles = dealership.getAllVehicles();
         displayVehicles(allVehicles);
     }
 
+
+    // Handles the request to add a new vehicle
     public void processAddVehicleRequest() {
         System.out.println("\nEnter vehicle details:");
         System.out.print("VIN: ");
@@ -139,6 +150,7 @@ public class UserInterface {
         System.out.println("Vehicle added successfully.");
     }
 
+    // Handles the request to remove a vehicle by VIN
     public void processRemoveVehicleRequest() {
         System.out.print("Enter VIN of the vehicle to remove: ");
         int vinToRemove = Integer.parseInt(scanner.nextLine());
@@ -154,6 +166,7 @@ public class UserInterface {
         System.out.println("Vehicle with given VIN not found."); //if the vehicle is not found
     }
 
+    // Handles the request to find vehicles by price range
     public void processGetByPriceRequest() {
         System.out.print("Enter minimum price: ");
         double minPrice = Double.parseDouble(scanner.nextLine());
@@ -163,6 +176,8 @@ public class UserInterface {
         displayVehicles(vehicles);
     }
 
+
+    // Handles the request to find vehicles by make and model
     public void processGetByMakeModelRequest() {
         System.out.print("Enter make: ");
         String make = scanner.nextLine();
@@ -172,6 +187,8 @@ public class UserInterface {
         displayVehicles(vehicles);
     }
 
+
+    // Handles the request to find vehicles by year range
     public void processGetByYearRequest() {
         System.out.print("Enter minimum year: ");
         int minYear = Integer.parseInt(scanner.nextLine());
@@ -181,6 +198,7 @@ public class UserInterface {
         displayVehicles(vehicles);
     }
 
+    // Handles the request to find vehicles by color
     public void processGetByColorRequest() {
         System.out.print("Enter color: ");
         String color = scanner.nextLine();
@@ -188,6 +206,7 @@ public class UserInterface {
         displayVehicles(vehicles);
     }
 
+    // Handles the request to find vehicles by mileage range
     public void processGetByMileageRequest() {
         System.out.print("Enter minimum mileage: ");
         int minMileage = Integer.parseInt(scanner.nextLine());
@@ -197,6 +216,7 @@ public class UserInterface {
         displayVehicles(vehicles);
     }
 
+    // Handles the request to find vehicles by type
     public void processGetByVehicleTypeRequest() {
         System.out.print("Enter vehicle type (car, truck, SUV, van): ");
         String vehicleType = scanner.nextLine();
@@ -204,6 +224,7 @@ public class UserInterface {
         displayVehicles(vehicles);
     }
 
+    // Saves the dealership data and exits the application
     public void processSaveAndExitRequest() {
         dealershipFileManager.saveDealership(dealership);
         System.out.println("Dealership data saved. Exiting application.");
